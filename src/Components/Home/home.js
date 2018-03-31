@@ -6,6 +6,8 @@ import { firebaseConnect } from 'react-redux-firebase' // <-- Important
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import 'firebase/firestore' // <-- important
+import ChatMain from '../chat/chatMain'
+import ChatInput from '../chat/chatInput'
 
 class homeComponent extends Component{
     state = {
@@ -31,7 +33,7 @@ class homeComponent extends Component{
     }
 
     onCreateUser = () => {
-        const { email, password } = this.state
+        const { email, password} = this.state
         firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
             this.props.firebase.login({
                 email: email,
@@ -68,8 +70,16 @@ class homeComponent extends Component{
                                 <Button text='Logout' intent={Intent.SUCCESS} onClick={() => this.logout()}/>
                             </ButtonGroup>
                         </div>
-                    </div> : <span>Your are logged in</span>}
+                    </div> : <div><span>Your are logged in</span></div>}
                 </Card>
+                {
+                    this.state.empty ? <div/> : <div>
+                        <ChatMain/><div style={{position: 'fixed', left: 0, bottom: 0, width: '100%'}}>
+                        <ChatInput/>
+                    </div>
+                    </div>
+                }
+
 
             </div>
         )
