@@ -5,11 +5,14 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import 'firebase/firestore'
 import moment from 'moment'
+import { Modal } from 'antd'
+import angy from '../../assets/angry.png'
 
 class chatMain extends Component {
 
     state = {
-        all: []
+        all: [],
+        isVisible: false
     }
 
     componentWillReceiveProps(nextProps){
@@ -31,11 +34,13 @@ class chatMain extends Component {
             <div style={{marginTop: 10, marginBottom: 40}}>
                 <Card elevation={Elevation.TWO}>
                     <span>Chat Window</span>
+                    <img src={angy} onClick={() => this.setState({isVisible: true})}/>
                     <div>
                         { all.map(item => (
                             <div key={item.id}>
                                 <Card elevation={Elevation.ONE}>
                                     <span>{item.text}</span>
+                                  {item.image !== undefined ? <img style={{width: 100, height: 100, objectFit:'cover'}} src={item.image}/> : <span></span>}
                                     <div>
                                         <span>user: {item.user}</span>
                                     </div>
@@ -49,6 +54,12 @@ class chatMain extends Component {
                         ))}
                     </div>
                 </Card>
+                <Modal visible={this.state.isVisible} closable={true} onCancel={() => this.setState({isVisible: false})}>
+                    <div>
+                        <span>dadajkdhjkadajk jkahdkhajkdhjkahdjkhjk</span>
+                    </div>
+                </Modal>
+
             </div>
         )
     }

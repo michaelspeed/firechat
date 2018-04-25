@@ -12,6 +12,7 @@
     "react-redux": "^5.0.7",
     "react-redux-firebase": "^2.0.6",
     "react-scripts": "1.1.1",
+    "react-sizer": "^1.0.2",
     "react-transition-group": "^2.3.0",
     "redux": "^3.7.2",
     "redux-firestore": "^0.3.2"

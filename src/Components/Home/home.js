@@ -54,7 +54,6 @@ class homeComponent extends Component{
         this.props.firebase.logout()
     }
     render(){
-        console.log(this.props)
         const {email, password} = this.state
         return(
             <div style={{marginTop: 10, marginLeft: 10, marginRight: 10}}>
